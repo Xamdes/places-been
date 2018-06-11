@@ -1,45 +1,41 @@
 $(function() {
-  $("form#new-contact").submit(function(event) {
+  $("form#new-place").submit(function(event) {
     event.preventDefault();
 
-    var inputFirstName = $("input#new-first-name").val();
-    var inputLastName = $("input#new-last-name").val();
-    var inputStreet = $("input#new-street-name").val();
-    var inputCity = $("input#new-city-name").val();
-    var inputState = $("input#new-state-name").val();
+    var inputLocation = $("#input-location").val();
+    var inputLandmark = $("#input-landmark").val();
+    var inputDate = $("#input-date").val();
+    var inputNotes = $("#input-notes").val();
 
-    var newContact = new Contact(inputFirstName, inputLastName, inputStreet, inputCity, inputState);
+    var newPlace = new Place(inputLocation, inputLandmark, inputDate, inputNotes);
 
-    $("ul#contacts").append(
-      "<li><span class='contact'>" + newContact.firstName + "</span></li>");
+    $("ul#places").append(
+      "<li><span class='place'>" + newPlace.location + "</span></li>");
 
-    $(".contact").last().click(function(){
-      $("#show-contact").show();
-      $("#show-contact h2").text(newContact.firstName);
-      $(".first-name").text(newContact.firstName);
-      $(".last-name").text(newContact.lastName);
-      $(".street-name").text(newContact.streetName);
-      $(".city-name").text(newContact.cityName);
-      $(".state-name").text(newContact.stateName);
+    $(".place").last().click(function(){
+      $("#show-place").show();
+      $("#show-place h2").text(newPlace.location);
+      $(".location").text(newPlace.location);
+      $(".landmark").text(newPlace.landmark);
+      $(".date").text(newPlace.date);
+      $(".notes").text(newPlace.notes);
     });
     clearInput();
   });
 });
 
 //Create a constructor for object Contact
-function Contact(first, last , street, city, state){
-  this.firstName = first;
-  this.lastName = last;
-  this.streetName= street;
-  this.cityName = city;
-  this.stateName = state;
+function Place(inputLocation, inputLandmark , inputDate, inputNotes){
+  this.location = inputLocation;
+  this.landmark = inputLandmark;
+  this.date = inputDate;
+  this.notes = inputNotes;
 }
 
 function clearInput()
 {
-  $("input#new-first-name").val("");
-  $("input#new-last-name").val("");
-  $("input#new-street-name").val("");
-  $("input#new-city-name").val("");
-  $("input#new-state-name").val("");
+  $("#input-location").val("");
+  $("#input-landmark").val("");
+  $("#input-date").val("");
+  $("#input-notes").val("");
 }
