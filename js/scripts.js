@@ -15,10 +15,11 @@ $(function() {
     $(".place").last().click(function(){
       $("#show-place").show();
       $("#show-place h2").text(newPlace.location);
-      $(".location").text(newPlace.location);
-      $(".landmark").text(newPlace.landmark);
-      $(".date").text(newPlace.date);
-      $(".notes").text(newPlace.notes);
+      newPlace.output(".location",".landmark",".date",".notes");
+      // $(".location").text(newPlace.location);
+      // $(".landmark").text(newPlace.landmark);
+      // $(".date").text(newPlace.date);
+      // $(".notes").text(newPlace.notes);
     });
     clearInput();
   });
@@ -31,6 +32,16 @@ function Place(inputLocation, inputLandmark , inputDate, inputNotes){
   this.date = inputDate;
   this.notes = inputNotes;
 }
+
+Place.prototype.output = function (outputLocation,outputLandmark,outputDate,outputNotes)
+{
+  $(outputLocation).text(this.location);
+  $(outputLandmark).text(this.landmark);
+  $(outputDate).text(this.date);
+  $(outputNotes).text(this.notes);
+};
+
+
 
 function clearInput()
 {
